@@ -1,3 +1,5 @@
+# THIS IS PUBLIC
+
 See https://github.com/prometheus-community/helm-charts for the upstream project
 
 # GravitySketch
