@@ -1,34 +1,19 @@
-# Prometheus Community Kubernetes Helm Charts
+# THIS IS PUBLIC
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) ![Release Charts](https://github.com/prometheus-community/helm-charts/workflows/Release%20Charts/badge.svg?branch=main) [![Releases downloads](https://img.shields.io/github/downloads/prometheus-community/helm-charts/total.svg)](https://github.com/prometheus-community/helm-charts/releases)
+See https://github.com/prometheus-community/helm-charts for the upstream project
 
-This functionality is in beta and is subject to change. The code is provided as-is with no warranties. Beta features are not subject to the support SLA of official GA features.
+# GravitySketch
 
-## Usage
+This fork exists to blacklist various apiserver_* and other metrics, it should
+follow upstream in most other ways and making changes here should be avoided
+whenever possible. Patching a chart is painful, so forking is simpler (and using
+a locally vendored copy with a file:// repository is also painful, thus here we
+are).
 
-[Helm](https://helm.sh) must be installed to use the charts.
-Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
+## How to make changes
 
-Once Helm is set up properly, add the repo as follows:
-
-```console
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-```
-
-You can then run `helm search repo prometheus-community` to see the charts.
-
-## Contributing
-
-The source code of all [Prometheus](https://prometheus.io) community [Helm](https://helm.sh) charts can be found on Github: <https://github.com/prometheus-community/helm-charts/>
-
-<!-- Keep full URL links to repo files because this README syncs from main to gh-pages.  -->
-We'd love to have you contribute! Please refer to our [contribution guidelines](https://github.com/prometheus-community/helm-charts/blob/main/CONTRIBUTING.md) for details.
-
-## License
-
-<!-- Keep full URL links to repo files because this README syncs from main to gh-pages.  -->
-[Apache 2.0 License](https://github.com/prometheus-community/helm-charts/blob/main/LICENSE).
-
-## Helm charts build status
-
-![Release Charts](https://github.com/prometheus-community/helm-charts/workflows/Release%20Charts/badge.svg?branch=main)
+Create a new branch from the desired point in time with the name
+`gravitysketch/<tag-branch-or-sha-name>` (e.g. if branching changing the
+`prometheus-22.6.6` tag create a branch called
+`gravitysketch/prometheus-22.6.6`), and make changes there to simplify
+syncing/rebasing.
