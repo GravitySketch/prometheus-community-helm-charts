@@ -48,6 +48,6 @@ annotations:
   "artifacthub.io/license": Apache-2.0
   "artifacthub.io/links": |
     - name: Chart Source
-      url: https://github.com/prometheus-community/helm-charts
+      url: https://github.com/GravitySketch/prometheus-community-helm-charts
     - name: Upstream Project
       url: https://github.com/prometheus/prometheus
