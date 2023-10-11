@@ -720,6 +720,8 @@ serverFiles:
           - source_labels: [__meta_kubernetes_namespace, __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]
             action: keep
             regex: default;kubernetes;https
+
+        metric_relabel_configs:
           - source_labels: [ __name__ ]
             regex: 'apiserver_[^rc].*'
             action: drop
@@ -736,7 +738,7 @@ serverFiles:
             regex: 'apiserver_request_[^t].*'
             action: drop
           - source_labels: [ __name__ ]
-            regex: 'apiserver_requested_.'
+            regex: 'apiserver_requested_.*'
             action: drop
           - source_labels: [ __name__ ]
             regex: 'apiserver_response_.*'

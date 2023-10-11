@@ -10,7 +10,7 @@ entries:
           url: https://github.com/prometheus/prometheus
     apiVersion: v2
     appVersion: v2.44.0
-    created: "2023-10-11T16:45:14.4637766+01:00"
+    created: "2023-10-11T17:37:09.1635973+01:00"
     dependencies:
     - condition: alertmanager.enabled
       name: alertmanager
@@ -29,7 +29,7 @@ entries:
       repository: https://prometheus-community.github.io/helm-charts
       version: 2.0.*
     description: Prometheus is a monitoring system and time series database.
-    digest: 7d7453d9088bfcf5aa777c6b99a0c4194f7bb9318ecda8ac70ce1d1abe9ef5fe
+    digest: 0f958a6059a3b62d5b25f1e32b0f880c04a3c142fb883876579f52abdd01c486
     home: https://prometheus.io/
     icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
     keywords:
@@ -56,6 +56,6 @@ entries:
     - https://github.com/kubernetes/kube-state-metrics
     type: application
     urls:
-    - charts/prometheus-22.6.6.tgz
-    version: 22.6.6
-generated: "2023-10-11T16:45:14.4567749+01:00"
+    - charts/prometheus-22.6.7.tgz
+    version: 22.6.7
+generated: "2023-10-11T17:37:09.1403976+01:00"
