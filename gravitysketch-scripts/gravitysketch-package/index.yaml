@@ -10,7 +10,7 @@ entries:
           url: https://github.com/prometheus/prometheus
     apiVersion: v2
     appVersion: v2.44.0
-    created: "2023-10-11T15:18:01.7964853+01:00"
+    created: "2023-10-11T15:32:08.5626603+01:00"
     dependencies:
     - condition: alertmanager.enabled
       name: alertmanager
@@ -29,7 +29,7 @@ entries:
       repository: https://prometheus-community.github.io/helm-charts
       version: 2.0.*
     description: Prometheus is a monitoring system and time series database.
-    digest: 31088062f96376b646fd7c2881057881f5f01354b8fdfe90f256a8cc9c999b44
+    digest: 84faab74c5410b783fbfc1ed90e578b4ae5ca2b4094f24a8fcddb149bb59ef86
     home: https://prometheus.io/
     icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
     keywords:
@@ -58,4 +58,4 @@ entries:
     urls:
     - charts/prometheus-22.6.6.tgz
     version: 22.6.6
-generated: "2023-10-11T15:18:01.7892546+01:00"
+generated: "2023-10-11T15:32:08.5561448+01:00"

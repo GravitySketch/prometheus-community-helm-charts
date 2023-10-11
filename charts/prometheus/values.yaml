@@ -720,6 +720,27 @@ serverFiles:
           - source_labels: [__meta_kubernetes_namespace, __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]
             action: keep
             regex: default;kubernetes;https
+          - source_labels: [ __name__ ]
+            regex: 'apiserver_[^rc].*'
+            action: drop
+          - source_labels: [ __name__ ]
+            regex: 'apiserver_cache_.*'
+            action: drop
+          - source_labels: [ __name__ ]
+            regex: 'apiserver_current_inflight_.*'
+            action: drop
+          - source_labels: [ __name__ ]
+            regex: 'apiserver_registered_.*'
+            action: drop
+          - source_labels: [ __name__ ]
+            regex: 'apiserver_request_[^t].*'
+            action: drop
+          - source_labels: [ __name__ ]
+            regex: 'apiserver_requested_.'
+            action: drop
+          - source_labels: [ __name__ ]
+            regex: 'apiserver_response_.*'
+            action: drop
 
       - job_name: 'kubernetes-nodes'
 
