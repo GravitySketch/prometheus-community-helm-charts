@@ -15,4 +15,5 @@ mkdir -p "$GS_PKG_DIR/charts"
 echo -e "User-Agent: *\nDisallow: /" > robots.txt
 helm dependency update "$CWD/../charts/prometheus/"
 helm package "$CWD/../charts/prometheus/" --destination "$GS_PKG_DIR/charts"
-helm repo index "$GS_PKG_DIR"
+wget -qO $GS_PKG_DIR/index.yaml https://raw.github.com/GravitySketch/prometheus-community-helm-charts/$(git rev-parse --abbrev-ref HEAD)/gravitysketch-scripts/gravitysketch-package/index.yaml
+helm repo index "$GS_PKG_DIR" --merge $GS_PKG_DIR/index.yaml
