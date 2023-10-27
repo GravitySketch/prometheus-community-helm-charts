@@ -744,6 +744,35 @@ serverFiles:
             regex: 'apiserver_response_.*'
             action: drop
 
+          - source_labels: [ __name__ ]
+            regex: 'kubelet_.*'
+            action: drop
+
+          - source_labels: [ __name__ ]
+            regex: 'etcd_request_duration_seconds_bucket'
+            action: drop
+          - source_labels: [ __name__ ]
+            regex: 'rpc_request_duration_second_bucket'
+            action: drop
+          - source_labels: [ __name__ ]
+            regex: 'dyn_latency_bucket'
+            action: drop
+          - source_labels: [ __name__ ]
+            regex: 'storage_operation_duration_seconds_bucket'
+            action: drop
+          - source_labels: [ __name__ ]
+            regex: 'container_tasks_state'
+            action: drop
+          - source_labels: [ __name__ ]
+            regex: 'rpc_request_total_count_total'
+            action: drop
+          - source_labels: [ __name__ ]
+            regex: 'rpc_request_total_count_created'
+            action: drop
+          - source_labels: [ __name__ ]
+            regex: 'container_blkio_device_usage_total'
+            action: drop
+
       - job_name: 'kubernetes-nodes'
 
         # Default to scraping over https. If required, just disable this or change to
