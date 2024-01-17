@@ -798,7 +798,10 @@ serverFiles:
             replacement: /api/v1/nodes/$1/proxy/metrics
         metric_relabel_configs:
         - action: labeldrop
-          regex: (eks.*|instance|beta_kubernetes_io_instance_type|k8s_io_cloud_provider_aws)
+          regex: (eks.*|instance|beta_kubernetes_io_instance_type|k8s_io_cloud_provider_aws|mountpoint)
+        - action: drop
+          regex: (rest_client_.+|node_scrape_collector_.+|kubelet_.+?_duration_seconds_bucket|authentication_token_cache_.+|apiserver_.+|node_network_mtu_bytes|node_network_flags|node_network_protocol_type|node_network_(carrier.+)|node_network_(transmit|receive)_(drop|carrier)_total|node_network_(up|net_dev_group|iface_id|transmit_compressed_total|device_id|receive_frame_total|network_dormant|arp_entries)|node_authorizer_graph_.+|node_softnet_.+|node_cooling_.+)
+          source_labels: [__name__]
 
 
       - job_name: 'kubernetes-nodes-cadvisor'
@@ -848,7 +851,7 @@ serverFiles:
         - action: labeldrop
           regex: (kubernetes_io_hostname|failure_domain_beta_kubernetes_io_region|beta_kubernetes_io_os|beta_kubernetes_io_arch|beta_kubernetes_io_instance_type|failure_domain_beta_kubernetes_io_zone|id|name|image|eks_.*|k8s_io_cloud_provider_aws)
         - action: keep
-          regex: container_(fs_(reads|writes)_bytes_total|fs_usage_bytes|cpu_usage_seconds_total|cpu_cfs_.+|network_(transmit|receive)_bytes_total|network_(transmit|receive)_packets_dropped_total|container_threads|spec_.+|memory_failcnt|memory_usage_bytes)
+          regex: container_(fs_(reads|writes)_bytes_total|fs_usage_bytes|cpu_usage_seconds_total|cpu_cfs_.+|network_(transmit|receive)_bytes_total|network_(transmit|receive)_packets_dropped_total|container_threads|spec_.+|memory_failcnt|memory_usage_bytes|memory_working_set_bytes)
           source_labels:
           - __name__
 
