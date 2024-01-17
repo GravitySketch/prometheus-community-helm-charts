@@ -800,8 +800,9 @@ serverFiles:
         - action: labeldrop
           regex: (eks.*|instance|beta_kubernetes_io_instance_type|k8s_io_cloud_provider_aws|mountpoint)
         - action: drop
-          regex: (rest_client_.+|node_scrape_collector_.+|kubelet_.+?_duration_seconds_bucket|authentication_token_cache_.+|apiserver_.+|node_network_mtu_bytes|node_network_flags|node_network_protocol_type|node_network_(carrier.+)|node_network_(transmit|receive)_(drop|carrier)_total|node_network_(up|net_dev_group|iface_id|transmit_compressed_total|device_id|receive_frame_total|network_dormant|arp_entries)|node_authorizer_graph_.+|node_softnet_.+|node_cooling_.+)
-          source_labels: [__name__]
+          regex: (rest_client_.+|kubelet_.+?_duration_seconds_bucket|authentication_token_cache_.+|apiserver_.+)
+          source_labels: 
+          - __name__
 
 
       - job_name: 'kubernetes-nodes-cadvisor'
@@ -909,6 +910,11 @@ serverFiles:
           - source_labels: [__meta_kubernetes_pod_node_name]
             action: replace
             target_label: node
+        metrics_relabel_config:
+          - action: drop
+            regex: (node_scrape_collector_.+|node_network_mtu_bytes|node_network_(up|net_dev_group|iface_id|transmit_compressed_total|device_id|receive_frame_total|network_dormant|mtu_bytes|protocol_type|carrier_.+|(transmit|receive)_(drop|carrier)_total|flags)|node_arp_entries|node_authorizer_graph_.+|node_softnet_.+|node_cooling_.+)
+            source_labels: 
+            - __name__
 
       # Scrape config for slow service endpoints; same as above, but with a larger
       # timeout and a larger interval
