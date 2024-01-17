@@ -796,6 +796,9 @@ serverFiles:
             regex: (.+)
             target_label: __metrics_path__
             replacement: /api/v1/nodes/$1/proxy/metrics
+	metric_relabel_configs:
+	- action: labeldrop
+	  regex: (eks.*|instance|beta_kubernetes_io_instance_type|k8s_io_cloud_provider_aws)
 
 
       - job_name: 'kubernetes-nodes-cadvisor'
@@ -841,9 +844,13 @@ serverFiles:
 
         # Metric relabel configs to apply to samples before ingestion.
         # [Metric Relabeling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs)
-        # metric_relabel_configs:
-        # - action: labeldrop
-        #   regex: (kubernetes_io_hostname|failure_domain_beta_kubernetes_io_region|beta_kubernetes_io_os|beta_kubernetes_io_arch|beta_kubernetes_io_instance_type|failure_domain_beta_kubernetes_io_zone)
+        metric_relabel_configs:
+        - action: labeldrop
+          regex: (kubernetes_io_hostname|failure_domain_beta_kubernetes_io_region|beta_kubernetes_io_os|beta_kubernetes_io_arch|beta_kubernetes_io_instance_type|failure_domain_beta_kubernetes_io_zone|id|name|image|eks_.*|k8s_io_cloud_provider_aws)
+        - action: keep
+	  regex: container_(fs_(reads|writes)_bytes_total|fs_usage_bytes|cpu_usage_seconds_total|cpu_cfs_.+|network_(transmit|receive)_bytes_total|network_(transmit|receive)_packets_dropped_total|container_threads|spec_.+|memory_failcnt|memory_usage_bytes)
+	  source_labels:
+          - __name__
 
       # Scrape config for service endpoints.
       #
